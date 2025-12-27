@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Users, TrendingUp, DollarSign, Phone, Mail, Facebook, MessageCircle } from 'lucide-react';
 
 export default function CharityPage() {
   const [donations, setDonations] = useState([]);
   const [stats, setStats] = useState({
     total: 0,
     donors: 0,
-    target: 500000  // غير الهدف هنا لو عايز
+    target: 500000
   });
   const [showContact, setShowContact] = useState(false);
 
-  // ضع هنا رابط Google Apps Script الخاص بك
-  const SHEET_URL = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbxQp1A3jJ1hfQxpfkVp1DZk8fYYPolTsIjz1hzmuGK4xw8uCbjD_sEen6UF10XKIRax/exec/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxQp1A3jJ1hfQxpfkVp1DZk8fYYPolTsIjz1hzmuGK4xw8uCbjD_sEen6UF10XKIRax/exec'; // غير بالرابط بتاعك
 
   useEffect(() => {
     fetchDonations();
@@ -38,7 +36,6 @@ export default function CharityPage() {
       });
     } catch (error) {
       console.error('خطأ في جلب البيانات:', error);
-      // بيانات تجريبية في حالة المشكلة
       const mockDonations = [
         { name: 'أحمد محمد', amount: 1000, date: '2025-12-28' },
         { name: 'سارة علي', amount: 500, date: '2025-12-27' },
@@ -73,7 +70,7 @@ export default function CharityPage() {
               onClick={() => setShowContact(true)}
               className="bg-gradient-to-r from-orange-500 to-amber-600 text-white px-8 py-3 rounded-full font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
-              <Heart className="w-5 h-5" />
+              <i className="fas fa-heart"></i>
               تبرع الآن
             </button>
           </div>
@@ -88,7 +85,7 @@ export default function CharityPage() {
             
             <div className="space-y-4">
               <a href="tel:+201069077988" className="flex items-center gap-4 p-4 bg-orange-50 rounded-xl hover:bg-orange-100 transition-colors">
-                <Phone className="w-6 h-6 text-orange-600" />
+                <i className="fas fa-phone text-orange-600"></i>
                 <div>
                   <p className="font-semibold text-gray-800">اتصل بنا</p>
                   <p className="text-gray-600">+20 106 907 7988</p>
@@ -96,7 +93,7 @@ export default function CharityPage() {
               </a>
 
               <a href="https://wa.me/201069077988" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
-                <MessageCircle className="w-6 h-6 text-green-600" />
+                <i className="fab fa-whatsapp text-green-600"></i>
                 <div>
                   <p className="font-semibold text-gray-800">واتساب</p>
                   <p className="text-gray-600">تواصل مباشر</p>
@@ -104,7 +101,7 @@ export default function CharityPage() {
               </a>
 
               <a href="https://www.facebook.com/lifemakers.dameitta/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition-colors">
-                <Facebook className="w-6 h-6 text-indigo-600" />
+                <i className="fab fa-facebook text-indigo-600"></i>
                 <div>
                   <p className="font-semibold text-gray-800">فيسبوك</p>
                   <p className="text-gray-600">تابعنا على فيسبوك</p>
@@ -122,7 +119,6 @@ export default function CharityPage() {
         </div>
       )}
 
-      {/* باقي الصفحة زي ما هي بس غيرت الألوان إلى برتقالي */}
       <main className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <div className="bg-white rounded-2xl p-6 shadow-lg border-r-4 border-orange-500">
@@ -131,7 +127,7 @@ export default function CharityPage() {
                 <p className="text-gray-600 mb-2">إجمالي التبرعات</p>
                 <p className="text-3xl font-bold text-gray-800">{stats.total.toLocaleString()} جنيه</p>
               </div>
-              <DollarSign className="w-12 h-12 text-orange-600" />
+              <i className="fas fa-dollar-sign text-5xl text-orange-600"></i>
             </div>
           </div>
 
@@ -141,7 +137,7 @@ export default function CharityPage() {
                 <p className="text-gray-600 mb-2">عدد المتبرعين</p>
                 <p className="text-3xl font-bold text-gray-800">{stats.donors}</p>
               </div>
-              <Users className="w-12 h-12 text-amber-600" />
+              <i className="fas fa-users text-5xl text-amber-600"></i>
             </div>
           </div>
 
@@ -151,7 +147,7 @@ export default function CharityPage() {
                 <p className="text-gray-600 mb-2">نسبة الإنجاز</p>
                 <p className="text-3xl font-bold text-gray-800">{progress.toFixed(1)}%</p>
               </div>
-              <TrendingUp className="w-12 h-12 text-yellow-600" />
+              <i className="fas fa-chart-line text-5xl text-yellow-600"></i>
             </div>
           </div>
         </div>
@@ -178,7 +174,7 @@ export default function CharityPage() {
               <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white fill-white" />
+                    <i className="fas fa-heart text-white"></i>
                   </div>
                   <div>
                     <p className="font-semibold text-gray-800">{donation.name}</p>
